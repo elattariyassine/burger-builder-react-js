@@ -25,11 +25,11 @@ const order = ( props ) => {
                 }}
             key={ig.name}>{ig.name} ({ig.amount})</span>;
     });
-
+    //USD {Number.parseFloat( props.price ).toFixed( 2 )}
     return (
         <div className={classes.Order}>
             <p>Ingredients: {ingredientOutput}</p>
-            <p>Price: <strong>USD {Number.parseFloat( props.price ).toFixed( 2 )}</strong></p>
+            <p>Price: <strong>USD {(Math.random() * 10).toFixed(2)}</strong></p>
         </div>
     );
 };

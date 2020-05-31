@@ -1,10 +1,11 @@
-import React from 'react';
+import React, { Component } from 'react';
+
 import Button from '../../../components/UI/Button/Button';
+import Spinner from '../../../components/UI/Spinner/Spinner';
 import classes from './ContactData.module.css';
 import axios from '../../../axios-orders';
-import Spinner from '../../../components/UI/Spinner/Spinner';
 
-class ContactData extends React.Component {
+class ContactData extends Component {
     state = {
         name: '',
         email: '',
@@ -15,46 +16,49 @@ class ContactData extends React.Component {
         loading: false
     }
 
-    orderHandler = (event) => {
+    orderHandler = ( event ) => {
         event.preventDefault();
-        this.setState({loading: true});
+        this.setState( { loading: true } );
         const order = {
             ingredients: this.props.ingredients,
             price: this.props.price,
             customer: {
-                name: 'Erwin Smith',
-                address:{
-                    street: 'street 1',
-                    zipCode: '00000',
+                name: 'erwinRare',
+                address: {
+                    street: 'Teststreet 1',
+                    zipCode: '12345',
                     country: 'Morocco'
                 },
                 email: 'test@test.com'
-            }
-        };
-        axios.post('/orders.json', order)
-                .then(response => {
-                    this.setState({loading: false});
-                    this.props.history.push('/');
-                })
-                .catch(error => this.setState({loading: false}));
+            },
+            deliveryMethod: 'SOME SERVICE'
+        }
+        axios.post( '/orders.json', order )
+            .then( response => {
+                this.setState( { loading: false } );
+                this.props.history.push('/');
+            } )
+            .catch( error => {
+                this.setState( { loading: false } );
+            } );
     }
 
-    render(){
+    render () {
         let form = (
             <form>
-                <input type="text" className={classes.Input} name="name" placeholder="Your name"/>
-                <input type="text" className={classes.Input} name="email" placeholder="Your email"/>
-                <input type="text" className={classes.Input} name="street" placeholder="Street"/>
-                <input type="text" className={classes.Input} name="postal" placeholder="Your postal"/>
-                <Button btnType='Success' clicked={this.orderHandler}>ORDER</Button>
+                <input className={classes.Input} type="text" name="name" placeholder="Your Name" />
+                <input className={classes.Input} type="email" name="email" placeholder="Your Mail" />
+                <input className={classes.Input} type="text" name="street" placeholder="Street" />
+                <input className={classes.Input} type="text" name="postal" placeholder="Postal Code" />
+                <Button btnType="Success" clicked={this.orderHandler}>ORDER</Button>
             </form>
         );
-        if(this.state.loading){
-            form = <Spinner />
+        if ( this.state.loading ) {
+            form = <Spinner />;
         }
         return (
             <div className={classes.ContactData}>
-                <h4>Enter Your Contact Data</h4>
+                <h4>Enter your Contact Data</h4>
                 {form}
             </div>
         );
