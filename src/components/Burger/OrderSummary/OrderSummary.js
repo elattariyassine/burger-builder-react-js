@@ -2,9 +2,12 @@ import Aux from '../../../hoc/Auxiliary';
 import React from 'react';
 
 const orderSummary = (props) => {
+    const style = {
+        textTransform: 'capitalize'
+    };
     const ingredientSummary = Object.keys(props.ingredients)
             .map(igKey => {
-                return <li><span className={{textTransform: 'capitalize'}}>{igKey}</span>: {props.ingredients[igKey]}</li>
+                return <li key={igKey}><span style={style}>{igKey}</span>: {props.ingredients[igKey]}</li>
             });
     return (
         <Aux>
