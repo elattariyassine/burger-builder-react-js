@@ -40,7 +40,7 @@ class Auth extends Component {
         touched: false,
       },
     },
-    isSignup: true,
+    isSignup: false,
   };
 
   componentDidMount() {
@@ -146,7 +146,11 @@ class Auth extends Component {
     return (
       <div className={classes.Auth}>
         {authRedirect}
-        {errorMessage}
+        {errorMessage ? (
+          <div className={classes.ErrorMessage}>
+            <p className={classes.ErrorText}>{errorMessage}</p>
+          </div>
+        ) : null}
         <form onSubmit={this.submitHandler}>
           {form}
           <Button btnType="Success">SUBMIT</Button>

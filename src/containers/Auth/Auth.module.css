@@ -1,15 +1,27 @@
 .Auth {
-    margin: 20px auto;
-    width: 80%;
-    text-align: center;
-    box-shadow: 0 2px 3px #ccc;
-    border: 1px solid #eee;
-    padding: 10px;
-    box-sizing: border-box;
+  margin: 20px auto;
+  width: 80%;
+  text-align: center;
+  box-shadow: 0 2px 3px #ccc;
+  border: 1px solid #eee;
+  padding: 10px;
+  box-sizing: border-box;
 }
 
 @media (min-width: 600px) {
-    .Auth {
-        width: 500px;
-    }
+  .Auth {
+    width: 500px;
+  }
+}
+.ErrorMessage {
+  background-color: #fce4e4;
+  border: 1px solid #fcc2c3;
+}
+.ErrorText {
+  color: #cc0033;
+  font-family: Helvetica, Arial, sans-serif;
+  font-size: 13px;
+  font-weight: bold;
+  line-height: 20px;
+  text-shadow: 1px 1px rgba(250, 250, 250, 0.3);
 }
